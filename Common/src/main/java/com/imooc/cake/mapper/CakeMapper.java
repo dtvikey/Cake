@@ -7,4 +7,7 @@ package com.imooc.cake.mapper;
  * 蛋糕
  */
 public interface CakeMapper {
+
+
+
 }
