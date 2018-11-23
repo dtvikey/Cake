@@ -11,10 +11,10 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * @Author: dtvikey
- * @Date: 23/11/18 下午 03:05
- * @Version 1.0
+ *
  * 分类Servlet
+ *
+ * @version 1.0
  */
 public class CategoryServlet extends HttpServlet {
 
@@ -28,18 +28,25 @@ public class CategoryServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if("/category/list.do".equals(req.getServletPath())){
+        if ("/category/list.do".equals(req.getServletPath())) {
+            //通过CategoryService的getCateegories方法可以获取全部的蛋糕分类
             List<Category> categories = categoryService.getCategories();
-            req.setAttribute("categories",categories);
-            req.getRequestDispatcher("/WEB-INF/views/biz/category_list.jsp").forward(req,resp);
-        }else if("category/addPrompt.do".equals(req.getServletPath())){
-            req.getRequestDispatcher("/WEB-INF/views/biz/category_add.jsp").forward(req,resp);
-        }else if("category/add.do".equals(req.getServletPath())){
+            //将categories存储在request作用域中
+            req.setAttribute("categories", categories);
+            //转发到category_list.jsp页面
+            req.getRequestDispatcher("/WEB-INF/views/biz/category_list.jsp").forward(req, resp);
+        } else if ("/category/addPrompt.do".equals(req.getServletPath())) {
+            req.getRequestDispatcher("/WEB-INF/views/biz/add_category.jsp").forward(req, resp);
+        } else if ("/category/add.do".equals(req.getServletPath())) {
+            //获取request请求中的name
             String name = req.getParameter("name");
+            //创建分类对象
             Category category = new Category();
+            //设置分类对象的名称
             category.setName(name);
+            //然后将该分类对象添加到数据库的分类信息中
             categoryService.addCategory(category);
-            req.getRequestDispatcher("/category/list.do").forward(req,resp);
+            req.getRequestDispatcher("/category/list.do").forward(req, resp);
         }
     }
 
