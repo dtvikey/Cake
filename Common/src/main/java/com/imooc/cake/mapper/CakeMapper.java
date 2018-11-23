@@ -29,7 +29,7 @@ public interface CakeMapper {
             @Result(column = "create_time",property = "create_time"),
             @Result(column = "update_time",property = "update_time")
             })
-    List<Cake> getCakes(Integer skip,Integer size);
+    List<Cake> getCakes(@Param("skip") Integer skip,@Param("size") Integer size);
 
     /**
      * 根据分类分页查询蛋糕
@@ -40,7 +40,7 @@ public interface CakeMapper {
      */
     @Select({"select id,category_id categoryId,name,level,price,create_time,update_time updateTime "  +
     "from cake where category_id = #{categoryId} order by create_time desc limit #{skip}, #{size}"})
-    List<Cake> getCakesByCategoryId(@Param("categoryId")Long categoryId, Integer skip, Integer size);
+    List<Cake> getCakesByCategoryId(@Param("categoryId")Long categoryId, @Param("skip") Integer skip, @Param("size") Integer size);
 
     @Select("select count(*) from cake where category_id = #{categoryId}")
     int countCakesByCategoryId(@Param("categoryId")Long categoryId);
