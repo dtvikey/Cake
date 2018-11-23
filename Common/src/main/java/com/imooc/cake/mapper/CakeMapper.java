@@ -8,6 +8,6 @@ package com.imooc.cake.mapper;
  */
 public interface CakeMapper {
 
-
+    
 
 }
