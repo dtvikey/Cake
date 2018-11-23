@@ -42,14 +42,28 @@ public interface CakeMapper {
     "from cake where category_id = #{categoryId} order by create_time desc limit #{skip}, #{size}"})
     List<Cake> getCakesByCategoryId(@Param("categoryId")Long categoryId, @Param("skip") Integer skip, @Param("size") Integer size);
 
+    /**
+     * 根据分类ID进行统计蛋糕数量
+     * @param categoryId 分类ID
+     * @return 分类下蛋糕数量
+     */
     @Select("select count(*) from cake where category_id = #{categoryId}")
     int countCakesByCategoryId(@Param("categoryId")Long categoryId);
 
+    /**
+     * 保存蛋糕信息
+     * @param cake 蛋糕信息
+     */
     @Insert("insert into cake(category_id,name,level,price,small_img,create_time,update_time) "+
            "value (#{cake.categoryId},#{cake.name},#{cake.level},#{cake.price},#{cake.smallImg}, "+
             "#{cake.createTime},#{cake.updateTime})")
     void addCake(@Param("cake") Cake cake);
 
+    /**
+     * 查询蛋糕图片信息
+     * @param id 蛋糕ID
+     * @return 只包含图片的蛋糕实体
+     */
     @Select("select small_img smallImg from cake where id=#{id} for update")
     Cake getImg(@Param("id")Long id);
 

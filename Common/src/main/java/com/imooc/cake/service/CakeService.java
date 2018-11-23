@@ -60,5 +60,49 @@ public class CakeService {
 
     }
 
+    /**
+     * 统计给定分类ID下的蛋糕数量
+     * @param categoryId  分类ID
+     * @return  统计结果
+     */
+    public int countCakesByCategoryId(Long categoryId){
+
+        SqlSession sqlSession = MyBatisUtils.openSession();
+
+        try{
+
+            CakeMapper mapper = sqlSession.getMapper(CakeMapper.class);
+            return mapper.countCakesByCategoryId(categoryId);
+
+        }finally {
+
+            sqlSession.close();
+
+        }
+    }
+
+    /**
+     * 根据ID查询对应的图片
+     * @param ｉｄ   蛋糕ID
+     * @return  只包含图片信息的蛋糕实体
+     */
+    public Cake getCakeImg(Long id) {
+
+        SqlSession sqlSession = MyBatisUtils.openSession();
+
+        try{
+
+            CakeMapper mapper = sqlSession.getMapper(CakeMapper.class);
+            return mapper.getImg(id);
+
+        }finally {
+
+            sqlSession.close();
+
+        }
+    }
+
+
+
 
 }

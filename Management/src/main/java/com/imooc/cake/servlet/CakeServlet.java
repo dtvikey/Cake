@@ -100,7 +100,7 @@ public class CakeServlet extends HttpServlet {
                                 //设置cake对象中的level值为request中的level
                                 cake.setLevel(Integer.valueOf(item.getString()));
                             } else if ("name".equals(fieldName)) {//当fieldName为name
-                                //设置cake对象中的level值为request中的name,为了防止出现中文乱码，将name值进行了转码
+                                //设置cake对象中的level值为request中的name,为了防止出现中文乱码,将name值进行了转码
                                 cake.setName(new String(item.getString().getBytes("iso8859-1"), "utf-8"));
                             } else if ("price".equals(fieldName)) {//当fieldName为price
                                 //设置cake对象中的price值为request中的price
