@@ -60,6 +60,7 @@ public class CakeServlet extends HttpServlet {
                 req.setAttribute("categories",categories);
                 req.setAttribute("page",page);
                 req.setAttribute("last",last);
+                req.setAttribute("categoryId",categoryId);
                 req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req,resp);
 
             }catch (NumberFormatException e){
